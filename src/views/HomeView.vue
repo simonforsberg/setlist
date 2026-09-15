@@ -7,6 +7,7 @@ import Footer from "./Footer.vue";
 import AddExercise from "../components/AddExerciseForm.vue";
 import ExerciseCard from "../components/ExerciseCard.vue";
 import SummaryCard from "../components/SummaryCard.vue";
+import WorkoutProgress from "../components/WorkoutProgress.vue";
 
 const exercises = ref([]);
 
@@ -15,6 +16,10 @@ function addExercise(name) {
     name: name,
     sets: [{ kg: 0, reps: 0, done: false }],
   });
+}
+
+function removeExercise(index) {
+  exercises.value.splice(index, 1);
 }
 
 const exerciseCount = computed(() => exercises.value.length);
@@ -49,15 +54,36 @@ const totalVolume = computed(() => {
   return total;
 });
 
-function removeExercise(index) {
-  exercises.value.splice(index, 1);
+const setDoneCount = computed(() => {
+  let total = 0;
+
+  exercises.value.forEach((exercise) => {
+    exercise.sets.forEach((set) => {
+      if (set.done) {
+        total++;
+      }
+    });
+  });
+
+  return total;
+});
+
+const allSetsDone = computed(() => {
+  return setCount.value > 0 && setDoneCount.value === setCount.value;
+});
+
+function clearSession() {
+  exercises.value = [];
 }
 </script>
 
 <template>
   <main>
     <Header />
-    <section class="workout-grid">
+    <section
+      class="workout-grid"
+      :class="{ 'workout-grid--empty': exercises.length === 0 }"
+    >
       <section class="exercise-list">
         <ExerciseCard
           v-for="(exercise, exIndex) in exercises"
@@ -76,6 +102,14 @@ function removeExercise(index) {
           :set-count="setCount"
           :rep-count="repCount"
           :total-volume="totalVolume"
+        />
+
+        <WorkoutProgress
+          v-if="exercises.length > 0"
+          :set-count="setCount"
+          :set-done-count="setDoneCount"
+          :all-sets-done="allSetsDone"
+          @clear-session="clearSession"
         />
       </div>
     </section>
