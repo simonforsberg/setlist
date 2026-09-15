@@ -189,13 +189,14 @@ body {
   background-color: #ccc;
 }
 
-.workout-progress {
+.progress {
   text-align: center;
   margin-top: 20px;
   font-size: 1rem;
   color: #666;
 }
-.workout-progress-btn {
+
+.progress-btn {
   font-family: "Mozilla Text", sans-serif;
   font-weight: bold;
   font-size: 1rem;
@@ -206,15 +207,15 @@ body {
   padding: 10px 12px;
   width: 8rem;
 }
-.workout-progress-btn:hover {
+.progress-btn:hover {
   cursor: not-allowed;
 }
-.workout-progress-btn.all-sets-done {
+.progress-btn.all-sets-done {
   background-color: #666;
   border-color: #666;
   color: white;
 }
-.workout-progress-btn.all-sets-done:hover {
+.progress-btn.all-sets-done:hover {
   cursor: pointer;
   transform: scaleX(1.1) scaleY(1.1);
 }

@@ -9,12 +9,12 @@ function clearSession() {
 </script>
 
 <template>
-  <section class="workout-progress">
+  <section class="progress">
     <p v-if="allSetsDone">Bra jobbat! Klicka nedan för att avsluta passet.</p>
     <p v-else>Slutför alla set.</p>
 
     <button
-      class="workout-progress-btn"
+      class="progress-btn"
       :class="{ 'all-sets-done': allSetsDone }"
       :disabled="!allSetsDone"
       @click="clearSession"

@@ -1,13 +1,13 @@
 <script setup>
 import { ref, computed } from "vue";
 
-import Header from "./Header.vue";
-import Footer from "./Footer.vue";
+import Header from "../components/Header.vue";
+import Footer from "../components/Footer.vue";
 
 import AddExercise from "../components/AddExerciseForm.vue";
 import ExerciseCard from "../components/ExerciseCard.vue";
 import SummaryCard from "../components/SummaryCard.vue";
-import WorkoutProgress from "../components/WorkoutProgress.vue";
+import ProgressButton from "../components/ProgressButton.vue";
 
 const exercises = ref([]);
 
@@ -20,6 +20,10 @@ function addExercise(name) {
 
 function removeExercise(index) {
   exercises.value.splice(index, 1);
+}
+
+function clearSession() {
+  exercises.value = [];
 }
 
 const exerciseCount = computed(() => exercises.value.length);
@@ -71,10 +75,6 @@ const setDoneCount = computed(() => {
 const allSetsDone = computed(() => {
   return setCount.value > 0 && setDoneCount.value === setCount.value;
 });
-
-function clearSession() {
-  exercises.value = [];
-}
 </script>
 
 <template>
@@ -104,7 +104,7 @@ function clearSession() {
           :total-volume="totalVolume"
         />
 
-        <WorkoutProgress
+        <ProgressButton
           v-if="exercises.length > 0"
           :set-count="setCount"
           :set-done-count="setDoneCount"
