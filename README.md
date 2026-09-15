@@ -1,8 +1,8 @@
-# Workout Log
+# Setlist
 
 Ett webbaserat träningsloggverktyg byggt med Vue 3 och Vite. Med applikationen kan man lägga till övningar, logga set med vikt och antal repetitioner, markera genomförda set och följa sin totala volym under passet.
 
-![workout-log-preview](workout-log-preview.png)
+![setlist-preview](setlist-preview.png)
 
 ## Funktioner
 
