@@ -11,12 +11,37 @@ import ProgressButton from "../components/ProgressButton.vue";
 
 const exercises = ref([]);
 
+const workoutStarted = ref(null);
+
 function addExercise(name) {
+  if (exercises.value.length === 0) {
+    workoutStarted.value = new Date();
+  }
+
   exercises.value.push({
     name: name,
     sets: [{ kg: 0, reps: 0, done: false }],
   });
 }
+
+const workoutStartTime = computed(() => {
+  if (!workoutStarted.value) {
+    return "";
+  }
+
+  return (
+    workoutStarted.value.toLocaleDateString("sv-SE", {
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+    }) +
+    " kl " +
+    workoutStarted.value.toLocaleTimeString("sv-SE", {
+      hour: "2-digit",
+      minute: "2-digit",
+    })
+  );
+});
 
 function removeExercise(index) {
   exercises.value.splice(index, 1);
@@ -24,6 +49,7 @@ function removeExercise(index) {
 
 function clearSession() {
   exercises.value = [];
+  workoutStarted.value = null;
 }
 
 const exerciseCount = computed(() => exercises.value.length);
@@ -94,6 +120,9 @@ const allSetsDone = computed(() => {
       </section>
 
       <div class="workout-sidebar">
+        <div class="no-exercises" v-if="exercises.length === 0">
+          <p>Lägg till en övning nedan för att starta ett pass.</p>
+        </div>
         <AddExercise @add-exercise="addExercise" />
 
         <SummaryCard
@@ -102,6 +131,7 @@ const allSetsDone = computed(() => {
           :set-count="setCount"
           :rep-count="repCount"
           :total-volume="totalVolume"
+          :workout-start-time="workoutStartTime"
         />
 
         <ProgressButton

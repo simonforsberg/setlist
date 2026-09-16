@@ -1,10 +1,18 @@
 <script setup>
-defineProps(["exerciseCount", "setCount", "repCount", "totalVolume"]);
+defineProps([
+  "exerciseCount",
+  "setCount",
+  "repCount",
+  "totalVolume",
+  "workoutStartTime",
+]);
 </script>
 
 <template>
   <section class="summary-card">
     <h3>Sammanfattning</h3>
+
+    <p>{{ workoutStartTime }}</p>
 
     <div class="summary-grid">
       <div class="summary-item">
