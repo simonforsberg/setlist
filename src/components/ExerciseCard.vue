@@ -1,4 +1,6 @@
 <script setup>
+import { computed } from "vue";
+
 const { exercise } = defineProps(["exercise"]);
 
 const emit = defineEmits(["remove-exercise"]);
@@ -18,6 +20,30 @@ function removeSet(setIndex) {
 function toggleSet(set) {
   set.done = !set.done;
 }
+
+const totalSets = computed(() => {
+  return exercise.sets.length;
+});
+
+const totalReps = computed(() => {
+  let total = 0;
+
+  exercise.sets.forEach((set) => {
+    total += set.reps;
+  });
+
+  return total;
+});
+
+const totalVolume = computed(() => {
+  let total = 0;
+
+  exercise.sets.forEach((set) => {
+    total += set.kg * set.reps;
+  });
+
+  return total;
+});
 </script>
 
 <template>
@@ -67,6 +93,21 @@ function toggleSet(set) {
     </div>
 
     <button class="add-set-btn" @click="addSet">+ set</button>
+
+    <div class="exercise-summary-grid">
+      <div class="exercise-summary-item">
+        <h4>Set</h4>
+        <p>{{ totalSets }}</p>
+      </div>
+      <div class="exercise-summary-item">
+        <h4>Reps</h4>
+        <p>{{ totalReps }}</p>
+      </div>
+      <div class="exercise-summary-item">
+        <h4>Volym</h4>
+        <p>{{ totalVolume }} kg</p>
+      </div>
+    </div>
   </article>
 </template>
 

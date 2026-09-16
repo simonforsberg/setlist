@@ -91,11 +91,12 @@ body {
 .add-exercise-btn {
   font-family: "Mozilla Text", sans-serif;
   font-weight: bold;
+  font-size: 1rem;
   background-color: #4caf50;
   color: white;
   border: 2px solid #4caf50;
   border-radius: 12px;
-  padding: 10px 12px;
+  padding: 0px 14px;
 }
 .add-exercise-btn:hover {
   background-color: #43a047;
@@ -179,14 +180,40 @@ body {
   font-size: 1rem;
   background-color: #f5f5f5;
   color: black;
+  font-weight: bold;
   border: none;
   border-radius: 8px;
-  margin-top: 5px;
+  margin-top: 10px;
   padding: 5px 15px;
 }
 .add-set-btn:hover {
   cursor: pointer;
   background-color: #ccc;
+}
+
+.exercise-summary-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  margin: 0px;
+}
+.exercise-summary-item h4 {
+  margin: 0px;
+  color: #666;
+  font-size: 0.75rem;
+}
+.exercise-summary-item {
+  padding: 12px;
+  margin-top: 10px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+.exercise-summary-item h4 {
+  color: #666;
+  font-size: 0.75rem;
+}
+.exercise-summary-item p {
+  margin: 0;
 }
 
 .progress {
