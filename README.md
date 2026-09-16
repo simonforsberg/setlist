@@ -10,6 +10,10 @@ Ett webbaserat träningsloggverktyg byggt med Vue 3 och Vite. Med applikationen 
 - Lägg till och ta bort set per övning
 - Ange vikt (kg) och antal repetitioner för varje set
 - Markera enskilda set som klara
+- Automatisk sammanfattning av varje övning:
+  - antal set
+  - antal repetitioner
+  - total volym (kp x reps)
 - Automatisk sammanfattning av passet:
   - träningspassets veckodag, datum och starttid
   - antal övningar
